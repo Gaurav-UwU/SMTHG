@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hey Poorvi! 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #fff0f6 0%, #fff8e1 50%, #e8f5e9 100%); min-height: 100vh; padding: 2rem 1rem 3rem; position: relative; overflow-x: hidden; }
+    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+    .hero { text-align: center; padding: 2.5rem 1rem 2rem; }
+    .hero-emoji { font-size: 52px; display: block; margin-bottom: 0.5rem; animation: bounce 1.5s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .hero-title { font-family: 'Pacifico', cursive; font-size: 2.6rem; color: #e91e8c; margin-bottom: 0.5rem; line-height: 1.2; }
+    .hero-sub { font-size: 1.05rem; color: #888; font-weight: 600; }
+    .section-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #e91e8c; margin: 2rem 0 1rem; text-align: center; }
+    .memories-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 2rem; }
+    .memory-card { background: #fff; border-radius: 20px; padding: 1.2rem 1rem; box-shadow: 0 4px 20px rgba(233,30,140,0.10); text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 2px solid transparent; }
+    .memory-card:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 30px rgba(233,30,140,0.18); border-color: #f48fb1; }
+    .memory-card.active { border-color: #e91e8c; background: #fff0f6; }
+    .memory-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+    .memory-title { font-size: 0.92rem; font-weight: 700; color: #333; margin-bottom: 0.3rem; }
+    .memory-desc { font-size: 0.78rem; color: #999; display: none; margin-top: 0.4rem; line-height: 1.5; }
+    .memory-card.active .memory-desc { display: block; color: #c2185b; }
+    .hug-box { background: linear-gradient(135deg, #e91e8c, #ff6f61); border-radius: 24px; padding: 1.8rem 1.5rem; text-align: center; color: #fff; margin-bottom: 1.5rem; box-shadow: 0 6px 24px rgba(233,30,140,0.25); }
+    .hug-box p { font-size: 1.05rem; line-height: 1.7; font-weight: 600; }
+    .hug-box .quote-icon { font-size: 2.5rem; opacity: 0.4; }
+    .cheers-btn { display: block; width: 100%; background: #e91e8c; color: #fff; font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 700; border: none; border-radius: 50px; padding: 1rem; cursor: pointer; margin-top: 1.5rem; box-shadow: 0 4px 14px rgba(233,30,140,0.3); transition: transform 0.15s, box-shadow 0.15s; letter-spacing: 0.03em; }
+    .cheers-btn:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(233,30,140,0.4); }
+    .cheers-btn:active { transform: scale(0.97); }
+    .cheer-msg { margin-top: 1rem; padding: 1rem 1.2rem; background: #fff; border-radius: 16px; font-size: 0.95rem; font-weight: 600; color: #c2185b; text-align: center; display: none; border: 2px dashed #f48fb1; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .footer { text-align: center; margin-top: 2rem; font-size: 0.85rem; color: #bbb; font-weight: 600; }
+    .star-row { display: flex; justify-content: center; gap: 8px; margin: 0.5rem 0 0; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+  <canvas id="confettiCanvas"></canvas>
+  <div class="content">
+    <div class="hero">
+      <span class="hero-emoji">🎉</span>
+      <div class="hero-title">Hey Poorvi!</div>
+      <div class="hero-sub">Bad days don't stand a chance against us ✨</div>
+    </div>
+
+    <div class="section-label">Our Mumbai Chronicles</div>
+
+    <div class="memories-grid">
+      <div class="memory-card" onclick="toggleCard(this)">
+        <span class="memory-icon">📄</span>
+        <div class="memory-title">Resume grind at Marine Lines</div>
+        <div class="memory-desc">From formatting fonts to debating bullet points — we crushed it together ❤️</div>
+      </div>
+      <div class="memory-card" onclick="toggleCard(this)">
+        <span class="memory-icon">🚦</span>
+        <div class="memory-title">Getting challaned together</div>
+        <div class="memory-desc">The most iconic crime duo. That fine was worth every memory 😂</div>
+      </div>
+      <div class="memory-card" onclick="toggleCard(this)">
+        <span class="memory-icon">🏥</span>
+        <div class="memory-title">Nanavati rants</div>
+        <div class="memory-desc">Every dramatic debrief, every "you won't believe what happened" — honestly iconic content 😤💕</div>
+      </div>
+      <div class="memory-card" onclick="toggleCard(this)">
+        <span class="memory-icon">💪</span>
+        <div class="memory-title">Every tough day, together</div>
+        <div class="memory-desc">We've been through a lot — and every single time, we came out smiling 🌟</div>
+      </div>
+    </div>
+
+    <div class="hug-box">
+      <div class="quote-icon">"</div>
+      <p>Bad days are just plot twists.<br>They don't define you — our story does.<br>And ours is nothing short of amazing.</p>
+    </div>
+
+    <button class="cheers-btn" onclick="showCheer()">Send me a cheer! 🎊</button>
+    <div class="cheer-msg" id="cheerMsg"></div>
+
+    <div class="footer">
+      Made with love, just for you 💕
+      <div class="star-row">⭐⭐⭐⭐⭐</div>
+    </div>
+  </div>
+
+  <script>
+    const cheers = [
+      "You are honestly one of the strongest people I know. Today was just one chapter — not the whole book. 📖",
+      "Guess what? Even Marine Lines resume days looked scary at first. And look how THAT turned out! 💼✨",
+      "You've survived 100% of your bad days so far. That's an incredible track record. 🏆",
+      "The challan was a tax on being awesome at the wrong time. You're still awesome. 😎",
+      "Bad days mean tomorrow has nowhere to go but up. I'm so proud of you. 🌅",
+      "Even your Nanavati rants are legendary. Nobody tells a story like you do. 🏥💫"
+    ];
+    let cheerIdx = 0;
+    function showCheer() {
+      const el = document.getElementById('cheerMsg');
+      el.textContent = cheers[cheerIdx % cheers.length];
+      el.style.display = 'block';
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = 'fadeIn 0.4s ease';
+      cheerIdx++;
+    }
+    function toggleCard(el) {
+      const wasActive = el.classList.contains('active');
+      document.querySelectorAll('.memory-card').forEach(c => c.classList.remove('active'));
+      if (!wasActive) el.classList.add('active');
+    }
+
+    // Confetti
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let pieces = [];
+    const colors = ['#e91e8c','#ff6f61','#ffca28','#66bb6a','#42a5f5','#ab47bc'];
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    function initPieces() {
+      pieces = Array.from({length: 50}, () => ({
+        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+        r: 5 + Math.random() * 6, color: colors[Math.floor(Math.random()*colors.length)],
+        speed: 0.4 + Math.random() * 0.6, wobble: Math.random() * Math.PI * 2,
+        wobbleSpeed: 0.02 + Math.random() * 0.02, alpha: 0.5 + Math.random() * 0.4
+      }));
+    }
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.y += p.speed; p.wobble += p.wobbleSpeed; p.x += Math.sin(p.wobble) * 0.7;
+        if (p.y > canvas.height + 10) { p.y = -10; p.x = Math.random() * canvas.width; }
+        ctx.save(); ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+      });
+      requestAnimationFrame(draw);
+    }
+    resize(); initPieces(); draw();
+    window.addEventListener('resize', () => { resize(); initPieces(); });
+  </script>
+</body>
+</html>
